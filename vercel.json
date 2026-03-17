@@ -1,11 +1,15 @@
 {
   "version": 2,
   "builds": [
-    { "src": "frontend/index.html", "use": "@vercel/static" },
+    { "src": "frontend/**", "use": "@vercel/static" },
     { "src": "backend/api/*.js", "use": "@vercel/node" }
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/backend/api/$1.js" },
+    { "src": "/impressum", "dest": "/frontend/impressum.html" },
+    { "src": "/datenschutz", "dest": "/frontend/datenschutz.html" },
+    { "src": "/impressum.html", "dest": "/frontend/impressum.html" },
+    { "src": "/datenschutz.html", "dest": "/frontend/datenschutz.html" },
     { "src": "/(.*)", "dest": "/frontend/$1" }
   ]
 }
