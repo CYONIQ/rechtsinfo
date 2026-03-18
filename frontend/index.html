@@ -467,7 +467,13 @@
       history.push({ role: 'assistant', content: text });
 
       const formatted = text
+        .replace(/^### (.*?)$/gm, '<h3 style="font-size:15px;font-weight:600;margin:1rem 0 0.4rem">$1</h3>')
+        .replace(/^## (.*?)$/gm, '<h2 style="font-size:17px;font-weight:600;margin:1.2rem 0 0.5rem">$1</h2>')
+        .replace(/^# (.*?)$/gm, '<h1 style="font-size:19px;font-weight:600;margin:1.2rem 0 0.5rem">$1</h1>')
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^- (.*?)$/gm, '<li style="margin-left:1.2rem;margin-bottom:4px">$1</li>')
+        .replace(/^(\d+)\. (.*?)$/gm, '<li style="margin-left:1.2rem;margin-bottom:4px">$2</li>')
         .replace(/\n\n/g, '</p><p>')
         .replace(/\n/g, '<br>')
         .replace(/^/, '<p>').replace(/$/, '</p>');
